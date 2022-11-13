@@ -1,4 +1,13 @@
 /packer_cache
 /out
+/out*
 win2019-*.box
+.vagrant
 .vagrant-cloud-token
+
+
+# Need to be downloaded
+# TODO : how to downlad during build
+/cd/20-mssql/SQL2019-SSEI-Dev.exe
+/cd/21-mssql-management-studio/SSMS-Setup-ENU.exe
+/cd/30-jdk8/jdk-8u202-windows-x64.exe
