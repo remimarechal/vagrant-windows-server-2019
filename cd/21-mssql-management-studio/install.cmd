@@ -1,0 +1,1 @@
+start "" /w ./SSMS-Setup-ENU.exe /Quiet SSMSInstallRoot=C:\MSSQLManagementStudio

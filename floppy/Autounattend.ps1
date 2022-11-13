@@ -77,24 +77,34 @@ choco install virtualbox-guest-additions-guest.install -y
 #Start-Process "I:/VBoxWindowsAdditions.exe" "/S" -Wait
 #Dismount-DiskImage "$env:windir\\temp\\vbox.iso"
 
-Write-Host "Cleaning up system"
-@(
-    "$env:localappdata\temp\*",
-    "$env:windir\temp\*",
-    "$env:windir\logs",
-    "$env:windir\panther",
-    "$env:windir\winsxs\manifestcache",
-    "$env:programdata\Microsoft\Windows Defender\Scans\*"
-) | % {
-  Write-Host "Removing $_"
-  try {
-    Takeown /d Y /R /f $_
-    Icacls $_ /GRANT:r administrators:F /T /c /q  2>&1 | Out-Null
-    Remove-Item $_ -Recurse -Force | Out-Null
-  } catch {
-      $global:error.RemoveAt(0)
-  }
+
+# RML : disable this because there is error
+# Write-Host "Cleaning up system"
+# @(
+#     "$env:localappdata\temp\*",
+#     "$env:windir\temp\*",
+#     "$env:windir\logs",
+#     "$env:windir\panther",
+#     "$env:windir\winsxs\manifestcache",
+#     "$env:programdata\Microsoft\Windows Defender\Scans\*"
+# ) | % {
+#   Write-Host "Removing $_"
+#   try {
+#     Takeown /d Y /R /f $_
+#     Icacls $_ /GRANT:r administrators:F /T /c /q  2>&1 | Out-Null
+#     Remove-Item $_ -Recurse -Force | Out-Null
+#   } catch {
+#       $global:error.RemoveAt(0)
+#   }
+# }
+
+
+Write-Host "Install additional software..."
+dir "E:\??-*\install.ps1" | Sort-Object | % {
+    Write-Host "Call $_ ..."
+    & "$_"
 }
+
 
 Write-Host "Optimizing volume"
 Optimize-Volume -DriveLetter C

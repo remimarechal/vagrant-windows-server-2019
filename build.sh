@@ -1,12 +1,8 @@
 #!/bin/bash
 set -e
-cd $(dirname "$0")
-function setup() {
-  read -rp "enter vagrand cloud token: " ct
-  echo "${ct}" > .vagrant-cloud-token
-}
-test -f .vagrant-cloud-token || setup
-ct=$(cat .vagrant-cloud-token)
-VAGRANT_CLOUD_TOKEN="${ct}" packer validate template.pkr.json
-VAGRANT_CLOUD_TOKEN="${ct}" packer build template.pkr.json
-exit 0
+
+vagrant_token="$1"
+
+rm -fv win2019-*.box 
+packer build -var "$vagrant_token" . 
+vagrant box add --force --name windows-server-2019-standard-desktop win2019-*.box
