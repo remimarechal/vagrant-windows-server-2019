@@ -23,5 +23,5 @@ Remove-Item `
     -Path "$env:TEMP\apache-ant-1.9.16-bin.zip"
 [Environment]::SetEnvironmentVariable(
     "PATH", 
-    "$path;C:\opt\ant-1.9.16\bin", 
+    "$PATH;C:\opt\ant-1.9.16\bin", 
     [EnvironmentVariableTarget]::User)

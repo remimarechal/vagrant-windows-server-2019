@@ -19,5 +19,5 @@ Remove-Item `
     -Path "$env:TEMP\gradle-7.5.1-bin.zip"
 [Environment]::SetEnvironmentVariable(
     "PATH", 
-    "$path;C:\opt\gradle-7.5.1\bin", 
+    "$PATH;C:\opt\gradle-7.5.1\bin", 
     [EnvironmentVariableTarget]::User)
